@@ -1,0 +1,13 @@
+{
+  "name": "30_09_2026",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Antonio Álvarez Fernández",
+  "license": "ISC",
+  "type": "commonjs"
+}
