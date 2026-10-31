@@ -16,6 +16,13 @@ server.get("/", (req, res) => {
     return res.status(200).json({message : "API REST de prueba"})
 })
 
+//Rutas
+
+//Middleware de errores generales
+server.use((error,req,res)=> {
+    return res.status(error.status || 500).json({message : error.message})
+})
+
 //Levantamos el servidor
 server.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
