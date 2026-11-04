@@ -3,8 +3,8 @@ require("dotenv").config();
 // Importaciones
 const express = require("express");
 const connect = require("./src/config/connect");
-const consolesRouter = require("./src/api/routes/consoles.routes");
-const videogamesRouter = require("./src/api/routes/videogames.router");
+const consolesRouter = require("./src/api/routes/console.routes");
+const videogamesRouter = require("./src/api/routes/videogames.routes");
 
 // Nos conectamos con la base de datos
 connect();
@@ -21,7 +21,6 @@ server.get("/", (req, res) => {
 });
 server.use("/consoles", consolesRouter);
 server.use("/videogames", videogamesRouter);
-server.use("/users", userRouter);
 // Middleware de rutas no encontradas
 server.use((req, res) => {
 	return res.status(404).json({message: "Route not found"})

@@ -7,7 +7,7 @@ const {
 	createConsole,
 	updateConsole,
 	deleteConsole,
-} = require("../controllers/consoles.controllers");
+} = require("../controllers/console.controllers");
 
 // Creamos un nuevo router
 const router = express.Router();

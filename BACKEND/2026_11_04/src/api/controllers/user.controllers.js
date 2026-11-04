@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const createError = require('../../utils/createError');
 
+
 const register = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
