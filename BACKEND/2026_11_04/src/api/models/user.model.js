@@ -30,9 +30,14 @@ const userSchema = new mongoose.Schema(
     }
 );
    
+//Hook o middleware de Moongose
 userSchema.pre("save", async function (){})
     if (this.isModified("password")) {
         return;
     }
     // Salt rounds
     this.password = await bcypt.hash(this.password, 10);
+
+    const User = mongoose.model("User", userSchema);
+
+    module.exports = User;

@@ -21,6 +21,7 @@ server.get("/", (req, res) => {
 });
 server.use("/consoles", consolesRouter);
 server.use("/videogames", videogamesRouter);
+server.use("/users", userRouter);
 // Middleware de rutas no encontradas
 server.use((req, res) => {
 	return res.status(404).json({message: "Route not found"})
