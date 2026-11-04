@@ -1,29 +1,37 @@
-// Importamos dotenv y lo configuramos
+// Importamos dotenv y lo arrancamos
 require("dotenv").config();
+// Importaciones
 const express = require("express");
 const connect = require("./src/config/connect");
- 
-//Nos conectamos con la base de dsatos
+const consolesRouter = require("./src/api/routes/consoles.routes");
+const videogamesRouter = require("./src/api/routes/videogames.router");
+
+// Nos conectamos con la base de datos
 connect();
-//Definimos el puerto de escucha del servidor
-const PORT = process.env.PORT || 8080;
-//Creamos el servidor y le añadimos el middleware para poder leer JSON en las peticiones
+// Definimos el puerto
+const PORT = process.env.PORT;
+// Creamos el servidor y le añadimos el middleware para poder leer JSON en las peticiones
 const server = express();
 server.use(express.json());
-
-// Ruta de prueba
+// Rutas
 server.get("/", (req, res) => {
-    return res.status(200).json({message : "API REST de prueba"})
-})
-
-//Rutas
-
-//Middleware de errores generales
-server.use((error,req,res)=> {
-    return res.status(error.status || 500).json({message : error.message})
-})
-
-//Levantamos el servidor
+	return res
+		.status(200)
+		.json({ message: "API REST de Videojuegos y Consolas" });
+});
+server.use("/consoles", consolesRouter);
+server.use("/videogames", videogamesRouter);
+// Middleware de rutas no encontradas
+server.use((req, res) => {
+	return res.status(404).json({message: "Route not found"})
+});
+// Middleware de errores generales
+server.use((error, req, res) => {
+	return res.status(error.status || 500).json({
+		message: error.message,
+	});
+});
+// Levantamos el servidor
 server.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+	console.log(`Servidor escuchando en http://localhost:${PORT} 🛜`);
 });
